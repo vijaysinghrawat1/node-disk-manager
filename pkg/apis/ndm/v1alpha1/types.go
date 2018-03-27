@@ -13,7 +13,7 @@ import (
 // StoragePoolClaim describes a StoragePoolClaim.
 type StoragePoolClaim struct {
 	metav1.TypeMeta   `json:",inline"`
-	metav1.ObjectMeta `json:"metadata",omitempty`
+	metav1.ObjectMeta `json:"metadata,omitempty"`
 
 	Spec StoragePoolClaimSpec `json:"spec"`
 }
@@ -46,7 +46,7 @@ type StoragePoolClaimList struct {
 // StoragePool describes a StoragePool.
 type StoragePool struct {
 	metav1.TypeMeta   `json:",inline"`
-	metav1.ObjectMeta `json:"metadata",omitempty`
+	metav1.ObjectMeta `json:"metadata,omitempty"`
 
 	Spec StoragePoolSpec `json:"spec"`
 }

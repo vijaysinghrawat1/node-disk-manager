@@ -1,0 +1,25 @@
+language: go
+
+go: stable
+
+sudo: required
+
+services:
+ - docker
+
+install:
+ - make bootstrap
+
+before_script:
+ - mkdir -p $HOME/gopath/src/github.com/openebs/node-disk-manager
+ - rsync -az ${TRAVIS_BUILD_DIR}/ $HOME/gopath/src/github.com/openebs/node-disk-manager/
+ - export TRAVIS_BUILD_DIR=$HOME/gopath/src/github.com/openebs/node-disk-manager
+ - cd $TRAVIS_BUILD_DIR
+
+script:
+ - make && make test
+
+after_success:
+ - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then export REPO=openebs/node-disk-manager;
+    docker login -u "$DNAME" -p "$DPASS" && docker push $REPO;
+   fi
